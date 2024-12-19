@@ -18,26 +18,60 @@ function Navbar() {
           <div className="nav">
             <ul className="flex gap-5 justify-evenly">
               <li className="flex justify-between gap-10">
-                <NavLink to="/">Home</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    `${isActive ? "text-red-500" : "text-white"}`
+                  }
+                  to="/"
+                >
+                  Home
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/about">About</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    `${isActive ? "text-red-500" : "text-white"}`
+                  }
+                  to="/about"
+                >
+                  About
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/services">Services</NavLink>
+                <NavLink
+                  className={({ isActive }) => `
+                ${isActive ? "text-red-500" : "text-white"}`}
+                  to="/services"
+                >
+                  Services
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/contact">Contact Us</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    `${isActive ? "text-red-500" : "text-white"}`
+                  }
+                  to="/contact"
+                >
+                  Contact Us
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/donate">Donate Blood</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    `${isActive ? "text-red-500" : "text-white"}`
+                  }
+                  to="/donate"
+                >
+                  Donate Blood
+                </NavLink>
               </li>
             </ul>
           </div>
           <div className="right-nav flex items-center justify-around">
             <GiHamburgerMenu className="ham text-[30px] hidden" />
             <div className="bg-green-400 w-[100px] h-[40px] flex justify-center items-center rounded-3xl text-md">
-              <Link to="#" className="text-md ">
+              <Link to="/login" className="text-md ">
                 Login
               </Link>
             </div>

@@ -8,6 +8,7 @@ import {
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FaTwitter } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 function Footer() {
   return (
@@ -32,10 +33,10 @@ function Footer() {
           <h1>Quick Links:</h1>
           <ul>
             <li className="flex flex-col">
-              <a href="">About Us</a>
-              <a href="">Why Donate?</a>
-              <a href="">Become a Donor</a>
-              <a href="">FAQs</a>
+              <NavLink to="/about">About Us</NavLink>
+              <NavLink to="">Why Donate?</NavLink>
+              <NavLink to="donate">Become a Donor</NavLink>
+              <NavLink to="">FAQs</NavLink>
             </li>
           </ul>
         </div>

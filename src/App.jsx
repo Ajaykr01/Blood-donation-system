@@ -6,6 +6,8 @@ import About from "./components/About";
 import Services from "./components/Services";
 import Contact from "./components/Contact";
 import DonateBlood from "./components/DonateBlood";
+import Login from "./components/Login";
+import Signup from "./components/SignUp";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +35,14 @@ function App() {
           path: "/donate",
           element: <DonateBlood />,
         },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path:"/signup",
+          element:<Signup />
+        }
       ],
     },
   ]);

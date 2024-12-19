@@ -14,10 +14,10 @@ nav ul li a {
   color: white;
 }
 
-nav ul li a:hover {
+/* nav ul li a:hover {
   color: black;
   transition: all 0.2s;
-}
+} */
 
 .footer-middle ul li a {
   color: blue;
