@@ -10,7 +10,7 @@ import { MdEmail } from "react-icons/md";
 import { FaTwitter } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
-function Footer() {
+const Footer = () => {
   return (
     <div>
       <div className="bg-gray-900 text-white h-60 flex items-center justify-around">
@@ -68,6 +68,6 @@ function Footer() {
       </div>
     </div>
   );
-}
+};
 
 export default Footer;
