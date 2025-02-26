@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const donationSchema = new mongoose.Schema({
+  parentId:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
+  },
   fullName: { type: String, required: true },
   email: { type: String, required: true },
   phone: { type: Number, required: true },
