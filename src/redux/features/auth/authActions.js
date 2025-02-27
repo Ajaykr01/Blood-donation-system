@@ -22,7 +22,6 @@ export const userLogin = createAsyncThunk(
       }
       return data;
     } catch (error) {
-      console.log("herllwfiwefhoiwe ");
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
