@@ -9,14 +9,15 @@ import axios from "axios";
 const DonationHistory = () => {
   const [data, setData] = useState([]);
   const { donor } = useSelector((state) => state.donation.history);
-
+  const id = localStorage.getItem("blood")
+  console.log("from doner bllod")
   useEffect(() => {
-    console.log(donor);
+    
     const getDonarsHistory = async () => {
       try {
-        if (donor && donor.email) {
+        if (id) {
           const res = await API.get(
-            `/donation/donation-history/${donor.email}`
+            `/donation/donation-history/${id}`
           );
           console.log("API Response:", res);
           console.log(res.data.donarData);
@@ -27,7 +28,7 @@ const DonationHistory = () => {
       }
     };
     getDonarsHistory();
-  }, [donor]);
+  }, []);
 
   // const handleDelete = async (id) => {
   //   try {

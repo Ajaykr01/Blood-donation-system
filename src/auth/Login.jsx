@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Form from "../components/shared/form/form";
+import Form from "../components/shared/form/Form";
 import { useSelector } from "react-redux";
 import Spinner from "../components/shared/Spinner";
 import { toast } from "react-toastify";
