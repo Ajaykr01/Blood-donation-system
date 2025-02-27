@@ -95,20 +95,20 @@ const DonationHistory = () => {
   };
   return (
     <Layout>
-      <h2 className="text-2xl font-bold mt-10 ml-5">My Donation History</h2>
+      <h2 className="text-2xl font-bold mt-5 ml-5">My Donation History</h2>
       {data.length > 0 ? (
         <table className="table-auto w-full m-5 border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-100">
-              <th className="border border-gray-300 px-4 py-2">Donor Name</th>
-              <th className="border border-gray-300 px-4 py-2">Email</th>
-              <th className="border border-gray-300 px-4 py-2">Phone</th>
-              <th className="border border-gray-300 px-4 py-2">Blood Group</th>
-              <th className="border border-gray-300 px-4 py-2">Gender</th>
-              <th className="border border-gray-300 px-4 py-2">Age</th>
-              <th className="border border-gray-300 px-4 py-2">Address</th>
-              <th className="border border-gray-300 px-4 py-2">Date</th>
-              <th className="border border-gray-300 px-4 py-2">Actions</th>
+              <th className="border border-gray-300 px-2 py-2">Donor Name</th>
+              <th className="border border-gray-300 px-2 py-2">Email</th>
+              <th className="border border-gray-300 px-2 py-2">Phone</th>
+              <th className="border border-gray-300 px-2 py-2">Blood Group</th>
+              <th className="border border-gray-300 px-2 py-2">Gender</th>
+              <th className="border border-gray-300 px-2 py-2">Age</th>
+              <th className="border border-gray-300 px-2 py-2">Address</th>
+              <th className="border border-gray-300 px-2 py-2">Date</th>
+              <th className="border border-gray-300 px-2 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -119,79 +119,79 @@ const DonationHistory = () => {
               >
                 {editingId === record._id ? (
                   <>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       <input
                         type="text"
                         name="name"
                         value={editFormData.name}
                         onChange={handleEditChange}
-                        className="border p-1 w-full"
+                        className="border p-1 w-28"
                       />
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       <input
                         type="email"
                         name="email"
                         value={editFormData.email}
                         onChange={handleEditChange}
-                        className="border p-1 w-full"
+                        className="border p-1 w-28"
                       />
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       <input
                         type="text"
                         name="phone"
                         value={editFormData.phone}
                         onChange={handleEditChange}
-                        className="border p-1 w-full"
+                        className="border p-1 w-28"
                       />
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       <input
                         type="text"
                         name="bloodGroup"
                         value={editFormData.bloodGroup}
                         onChange={handleEditChange}
-                        className="border p-1 w-full"
+                        className="border p-1 w-20"
                       />
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       <input
                         type="text"
                         name="gender"
                         value={editFormData.gender}
                         onChange={handleEditChange}
-                        className="border p-1 w-full"
+                        className="border p-1 w-20"
                       />
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       <input
                         type="number"
                         name="age"
                         value={editFormData.age}
                         onChange={handleEditChange}
-                        className="border p-1 w-full"
+                        className="border p-1 w-20"
                       />
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       <input
                         type="text"
                         name="location"
                         value={editFormData.location}
                         onChange={handleEditChange}
-                        className="border p-1 w-full"
+                        className="border p-1 w-32"
                       />
                     </td>
-                    <td className="border border-gray-300 px-4 py-2 flex gap-2">
+                    <td className="border border-gray-300 px-2 py-2 flex gap-2">
                       <button
                         onClick={handleUpdate}
-                        className="bg-green-500 text-white px-3 py-1 rounded"
+                        className="bg-green-500 text-white px-2 py-1 rounded"
                       >
                         Save
                       </button>
                       <button
                         onClick={() => setEditingId(null)}
-                        className="bg-gray-500 text-white px-3 py-1 rounded"
+                        className="bg-gray-500 text-white px-2 py-1 rounded"
                       >
                         Cancel
                       </button>
@@ -199,33 +199,33 @@ const DonationHistory = () => {
                   </>
                 ) : (
                   <>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       {record.name}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       {record.email}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       {record.phone}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       {record.bloodGroup}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       {record.gender}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       {record.age}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       {record.location}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-2 py-2">
                       {record.createdAt
                         ? moment(record.createdAt).format("DD/MM/YYYY")
                         : "N/A"}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2 flex gap-2">
+                    <td className="border border-gray-300 px-2 py-2 flex gap-2">
                       <button
                         onClick={() => handleEdit(record)}
                         className="bg-yellow-500 text-white px-3 py-1 rounded"
@@ -234,7 +234,7 @@ const DonationHistory = () => {
                       </button>
                       <button
                         onClick={() => handleDelete(record._id)}
-                        className="bg-red-500 text-white px-3 py-1 rounded"
+                        className="bg-red-500 text-white px-2 py-1 rounded"
                       >
                         Delete
                       </button>
