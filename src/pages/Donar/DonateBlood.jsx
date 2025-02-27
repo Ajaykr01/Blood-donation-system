@@ -4,6 +4,7 @@ import API from "../../services/API";
 import { toast } from "react-toastify";
 
 const DonateBlood = () => {
+  const parentid = localStorage.getItem("blood")
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -12,6 +13,7 @@ const DonateBlood = () => {
     gender: "",
     age: "",
     location: "",
+    parentId:parentid
   });
 
   const handleChange = (e) => {

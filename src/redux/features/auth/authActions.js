@@ -8,7 +8,8 @@ export const userLogin = createAsyncThunk(
   async ({ role, email, password }, { rejectWithValue }) => {
     try {
       const { data } = await API.post("/auth/login", { role, email, password });
-      //store token
+   
+      localStorage.setItem("blood",data.user._id);
       if (data.success) {
         toast.success(data.message);
         localStorage.setItem("token", data.token);
@@ -22,6 +23,7 @@ export const userLogin = createAsyncThunk(
       }
       return data;
     } catch (error) {
+      console.log("herllwfiwefhoiwe ")
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
@@ -58,6 +60,7 @@ export const userSignUp = createAsyncThunk(
         address,
         phone,
       });
+      localStorage.setItem("blood",JSON.stringify(data))
       if (data.success) {
         toast.success(data.message);
         window.location.replace("/login");
