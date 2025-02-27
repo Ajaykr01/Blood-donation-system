@@ -50,8 +50,10 @@ const getDonorHistory = async (req, res) => {
         .status(400)
         .json({ success: false, message: "Email is required" });
     }
+
     const parentId = new mongoose.Types.ObjectId(email);
     const donations = await Donation.find({ parentId });
+
     if (!donations.length) {
       return res
         .status(404)
@@ -70,16 +72,57 @@ const getDonorHistory = async (req, res) => {
   }
 };
 
+const updateDonationController = async (req, res) => {
+  try {
+    const { donationId } = req.params;
+    const updateData = req.body;
+
+    if (!donationId) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Donation ID is required" });
+    }
+
+    const existingDonation = await Donation.findById(donationId);
+    if (!existingDonation) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Donation record not found" });
+    }
+
+    updateData.createdAt = existingDonation.createdAt;
+
+    // const objectId = new mongoose.Types.ObjectId(donationId);
+    const updatedDonation = await Donation.findByIdAndUpdate(
+      donationId,
+      updateData,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedDonation) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Failed to update donation record" });
+    }
+
+    return res.status(200).send({
+      success: true,
+      message: "Donation history updated successfully",
+      updatedData: updatedDonation,
+    });
+  } catch (error) {
+    console.log("Error updating donation", error.message);
+    return res.status(500).send({
+      success: false,
+      seccess: "Error while updating donation history",
+      error,
+    });
+  }
+};
+
 const deleteDonationController = async (req, res) => {
   try {
-    console.log("✅ Full Request Params:", req.params);
     const { donationId } = req.params;
-    console.log(
-      "🔍 Donation ID received:",
-      donationId,
-      "Type:",
-      typeof donationId
-    );
 
     if (!donationId) {
       return res
@@ -111,4 +154,9 @@ const deleteDonationController = async (req, res) => {
   }
 };
 
-module.exports = { donateBlood, getDonorHistory, deleteDonationController };
+module.exports = {
+  donateBlood,
+  getDonorHistory,
+  updateDonationController,
+  deleteDonationController,
+};
