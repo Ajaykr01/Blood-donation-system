@@ -4,16 +4,16 @@ import API from "../../services/API";
 import { toast } from "react-toastify";
 
 const DonateBlood = () => {
-  const parentid = localStorage.getItem("blood")
+  const parentid = localStorage.getItem("blood");
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
     phone: "",
     bloodGroup: "",
     gender: "",
     age: "",
     location: "",
-    parentId:parentid
+    parentId: parentid,
   });
 
   const handleChange = (e) => {
@@ -26,7 +26,7 @@ const DonateBlood = () => {
       const res = await API.post("/donation/donate-blood", formData);
       if (res?.data.success) {
         setFormData({
-          fullName: "",
+          name: "",
           email: "",
           phone: "",
           bloodGroup: "",
@@ -50,8 +50,8 @@ const DonateBlood = () => {
               <label className="block font-medium text-white">Name</label>
               <input
                 type="text"
-                name="fullName"
-                value={formData.fullName}
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 placeholder="Enter your full name"
                 className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-red-500"
