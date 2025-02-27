@@ -2,13 +2,13 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/shared/Layout/Layout";
 import API from "../../services/API";
-import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-toastify";
 
 const DonationHistory = () => {
   const [data, setData] = useState([]);
+  const [editingId, setEditingId] = useState(null);
+  const [editFormData, setEditFormData] = useState({});
+
   const id = localStorage.getItem("blood");
 
   useEffect(() => {
@@ -24,6 +24,46 @@ const DonationHistory = () => {
     };
     getDonarsHistory();
   }, []);
+
+  const handleEdit = async (donation) => {
+    setEditingId(donation._id);
+    setEditFormData(donation);
+  };
+
+  const handleEditChange = (e) => {
+    setEditFormData({ ...editFormData, [e.target.name]: e.target.value });
+  };
+
+  const handleUpdate = async () => {
+    try {
+      if (!editingId) {
+        console.error("❌ Error: editingId is undefined!");
+        return;
+      }
+
+      const response = await API.put(
+        `/donation/update-donation-history/${editingId}`,
+        editFormData
+      );
+
+      if (!response.data || !response.data.updatedData) {
+        console.error("❌ Error: API response is missing updatedData!");
+        return;
+      }
+
+      setData((prevData) =>
+        prevData.map((record) =>
+          record._id === editingId ? response.data.updatedData : record
+        )
+      );
+
+      setEditingId(null);
+      toast("Donation history updated successfully!", { autoClose: 2000 });
+    } catch (error) {
+      console.error("Error updating donation:", error);
+      toast("Error updating donation history", { autoClose: 2000 });
+    }
+  };
 
   const handleDelete = async (donationId) => {
     try {
@@ -77,41 +117,130 @@ const DonationHistory = () => {
                 key={record._id}
                 className="border-b border-gray-300 hover:bg-gray-50"
               >
-                <td className="border border-gray-300 px-4 py-2">
-                  {record.name}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {record.email}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {record.phone}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {record.bloodGroup}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {record.gender}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {record.age}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {record.location}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}
-                </td>
-                <div className="flex py-2 px-4 gap-5 justify-center items-center">
-                  <button className="bg-yellow-500 px-5 py-2 rounded-lg">
-                    Edit
-                  </button>
-                  <button
-                    className="bg-red-500 px-2 py-2 rounded-lg"
-                    onClick={() => handleDelete(record._id)}
-                  >
-                    Delete
-                  </button>
-                </div>
+                {editingId === record._id ? (
+                  <>
+                    <td className="border border-gray-300 px-4 py-2">
+                      <input
+                        type="text"
+                        name="name"
+                        value={editFormData.name}
+                        onChange={handleEditChange}
+                        className="border p-1 w-full"
+                      />
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      <input
+                        type="email"
+                        name="email"
+                        value={editFormData.email}
+                        onChange={handleEditChange}
+                        className="border p-1 w-full"
+                      />
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      <input
+                        type="text"
+                        name="phone"
+                        value={editFormData.phone}
+                        onChange={handleEditChange}
+                        className="border p-1 w-full"
+                      />
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      <input
+                        type="text"
+                        name="bloodGroup"
+                        value={editFormData.bloodGroup}
+                        onChange={handleEditChange}
+                        className="border p-1 w-full"
+                      />
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      <input
+                        type="text"
+                        name="gender"
+                        value={editFormData.gender}
+                        onChange={handleEditChange}
+                        className="border p-1 w-full"
+                      />
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      <input
+                        type="number"
+                        name="age"
+                        value={editFormData.age}
+                        onChange={handleEditChange}
+                        className="border p-1 w-full"
+                      />
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      <input
+                        type="text"
+                        name="location"
+                        value={editFormData.location}
+                        onChange={handleEditChange}
+                        className="border p-1 w-full"
+                      />
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2 flex gap-2">
+                      <button
+                        onClick={handleUpdate}
+                        className="bg-green-500 text-white px-3 py-1 rounded"
+                      >
+                        Save
+                      </button>
+                      <button
+                        onClick={() => setEditingId(null)}
+                        className="bg-gray-500 text-white px-3 py-1 rounded"
+                      >
+                        Cancel
+                      </button>
+                    </td>
+                  </>
+                ) : (
+                  <>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {record.name}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {record.email}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {record.phone}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {record.bloodGroup}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {record.gender}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {record.age}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {record.location}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {record.createdAt
+                        ? moment(record.createdAt).format("DD/MM/YYYY")
+                        : "N/A"}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2 flex gap-2">
+                      <button
+                        onClick={() => handleEdit(record)}
+                        className="bg-yellow-500 text-white px-3 py-1 rounded"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(record._id)}
+                        className="bg-red-500 text-white px-3 py-1 rounded"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </>
+                )}
               </tr>
             ))}
           </tbody>
