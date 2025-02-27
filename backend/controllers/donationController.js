@@ -1,13 +1,12 @@
 const Donation = require("../models/donation");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+
 const donateBlood = async (req, res) => {
   try {
-    const { fullName, email, phone, bloodGroup, gender, age, location,parentId } =
+    const { name, email, phone, bloodGroup, gender, age, location, parentId } =
       req.body;
-
-    // Validate input
     if (
-      !fullName ||
+      !name ||
       !email ||
       !phone ||
       !bloodGroup ||
@@ -21,7 +20,7 @@ const donateBlood = async (req, res) => {
     }
     const donation = new Donation({
       parentId,
-      fullName,
+      name,
       email,
       phone,
       bloodGroup,
@@ -30,7 +29,6 @@ const donateBlood = async (req, res) => {
       location,
     });
 
-    // Save to MongoDB
     await donation.save();
 
     res.status(201).json({
@@ -43,7 +41,6 @@ const donateBlood = async (req, res) => {
   }
 };
 
-//GET DONATOIN HISTORY
 const getDonorHistory = async (req, res) => {
   try {
     const { email } = req.params;
@@ -54,8 +51,7 @@ const getDonorHistory = async (req, res) => {
         .json({ success: false, message: "Email is required" });
     }
     const parentId = new mongoose.Types.ObjectId(email);
-    const donations = await Donation.find({ parentId});
-    console.log(donations)
+    const donations = await Donation.find({ parentId });
     if (!donations.length) {
       return res
         .status(404)
@@ -67,39 +63,52 @@ const getDonorHistory = async (req, res) => {
       donarData: donations,
     });
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
     res
       .status(500)
       .json({ success: false, message: "Error fetching donar history" });
   }
 };
-//GET DONATOIN HISTORY
-const getADonorHistory = async (req, res) => {
-  try {
-    const { email } = req.params;
 
-    if (!email) {
+const deleteDonationController = async (req, res) => {
+  try {
+    console.log("✅ Full Request Params:", req.params);
+    const { donationId } = req.params;
+    console.log(
+      "🔍 Donation ID received:",
+      donationId,
+      "Type:",
+      typeof donationId
+    );
+
+    if (!donationId) {
       return res
         .status(400)
-        .json({ success: false, message: "Email is required" });
+        .json({ success: false, message: "Donation ID is required" });
     }
 
-    const donations = await Donation.find({ email });
+    const objectId = new mongoose.Types.ObjectId(donationId);
+    const deletedDonation = await Donation.findByIdAndDelete(objectId);
 
-    if (!donations.length) {
+    if (!deletedDonation) {
       return res
         .status(404)
-        .json({ success: false, message: "No donation history found" });
+        .json({ success: false, message: "Donation record not found" });
     }
-    res.status(200).json({
+
+    return res.status(200).send({
       success: true,
-      message: "Donar History Fetched Successfully",
-      donarData: donations,
+      message: "Donation history deleted successfully",
+      deletedData: deletedDonation,
     });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error fetching donar history" });
+    console.log("Error deleting donation", error.message);
+    return res.status(500).send({
+      success: false,
+      seccess: "Error while deleting donation history",
+      error,
+    });
   }
 };
-module.exports = { donateBlood, getDonorHistory };
+
+module.exports = { donateBlood, getDonorHistory, deleteDonationController };
