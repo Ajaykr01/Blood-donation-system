@@ -33,20 +33,22 @@ const Sidebar = () => {
 
           {user?.role === "donar" && (
             <>
-              {
-                <div className="menu-item">
-                  <i className="fa-solid fa-hand-holding-medical"></i>
-                  <Link to="/donate-blood">Donate Blood</Link>
-                </div>
-              }
+              <div
+                className={`menu-item ${
+                  location.pathname === "/donar-dashboard"
+                }`}
+              >
+                <i class="fa-solid fa-house-user"></i>
+                <Link to="/donar-dashboard">Home</Link>
+              </div>
+              <div className="menu-item">
+                <i className="fa-solid fa-hand-holding-medical"></i>
+                <Link to="/donate-blood">Donate Blood</Link>
+              </div>
               <div className={`menu-item ${location.pathname === "/donation"}`}>
                 <i class="fa-solid fa-clock-rotate-left"></i>
                 <Link to="/donation-history">Donation History</Link>
               </div>
-              {/* <div className={`menu-item ${location.pathname === "/donation"}`}>
-                <i className="fa-solid fa-hand-holding-medical"></i>
-                <Link to="/donation">Donation</Link>
-              </div> */}
             </>
           )}
 
