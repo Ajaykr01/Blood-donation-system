@@ -20,8 +20,8 @@ import DonarList from "./pages/Admin/DonarList";
 import HospitalList from "./pages/Admin/HospitalList";
 import AdminHome from "./pages/Admin/AdminHome";
 import HomePage from "./pages/HomePage";
-import DonorDashboard from "./pages/Dashboard/DonarDashboard";
 import DonationHistory from "./pages/Donar/DonationHistory";
+import DonorHome from "./pages/Donar/DonorHome";
 
 const App = () => {
   return (
@@ -104,7 +104,7 @@ const App = () => {
           path="/donar-dashboard"
           element={
             <ProtectedRoute>
-              <DonorDashboard />
+              <DonorHome />
             </ProtectedRoute>
           }
         />
