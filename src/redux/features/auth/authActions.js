@@ -15,7 +15,7 @@ export const userLogin = createAsyncThunk(
         if (role === "admin") {
           window.location.replace("/admin");
         } else if (role === "donar") {
-          window.location.replace("/donar");
+          window.location.replace("/donar-dashboard");
         } else if (role === "hospital") {
           window.location.replace("/home");
         }
