@@ -12,7 +12,9 @@ const Header = () => {
   //logout handler
   const handleLogout = () => {
     localStorage.clear();
-    toast.success("Logout Successfully");
+    toast.success("Logout Successfully", {
+      autoClose: 2000,
+    });
     navigate("/login");
   };
 
@@ -21,7 +23,8 @@ const Header = () => {
       <nav className="bg-black text-white">
         <div className="container flex justify-between items-center">
           <div className="logo m-2 flex items-center">
-            <BiDonateBlood className="size-10" /> Blood Bank App
+            <BiDonateBlood className="size-10" />{" "}
+            <span className="text-2xl font-semibold">Blood Bank App</span>
           </div>
           <ul className="navbar-nav flex m-5 items-center">
             <li className="nav-item">
@@ -33,28 +36,32 @@ const Header = () => {
                 </span>
               </p>
             </li>
-            {location.pathname === "/" ||
-            location.pathname === "/hospital" ||
-            location.pathname === "/home" ||
-            location.pathname === "/donation" ? (
-              <li className="nav-item">
-                <Link to="/analytics" className="text-sm p-2">
-                  Analytics
-                </Link>
-              </li>
-            ) : (
-              <li className="nav-item">
-                <Link to="/" className="text-sm p-2">
-                  Home
-                </Link>
-              </li>
-            )}
+            {(user?.role === "admin" || user?.role === "hospital") &&
+              (location.pathname === "/" ||
+              location.pathname === "/hospital" ||
+              location.pathname === "/home" ||
+              location.pathname === "/admin" ||
+              location.pathname === "/consumer" ||
+              location.pathname === "/donation" ? (
+                <li className="nav-item">
+                  <Link to="/analytics" className="text-sm p-2">
+                    Analytics
+                  </Link>
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <Link to="/" className="text-sm p-2">
+                    Home
+                  </Link>
+                </li>
+              ))}
             <li className="nav-item mx-3">
               <button
-                className="bg-red-700 text-white h-10 w-20 rounded-md"
+                className="bg-red-700 text-white h-10 w-24 rounded-md"
                 onClick={handleLogout}
               >
                 Logout
+                <i class="fa-solid fa-right-from-bracket pl-1"></i>
               </button>
             </li>
           </ul>
