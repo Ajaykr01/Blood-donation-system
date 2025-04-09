@@ -5,14 +5,16 @@ import Sidebar from "./Sidebar";
 const Layout = ({ children }) => {
   return (
     <>
-      <div>
-        <Header />
-      </div>
-      <div className="flex">
-        <div className="w-60">
-          <Sidebar />
+      <div className="h-screen">
+        <div className="sticky top-0 z-50">
+          <Header />
         </div>
-        <div>{children}</div>
+        <div className="flex">
+          <div className="w-60">
+            <Sidebar />
+          </div>
+          <div>{children}</div>
+        </div>
       </div>
     </>
   );
