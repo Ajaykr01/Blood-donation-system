@@ -12,7 +12,7 @@ const Signup = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className=" flex items-center justify-center bg-black">
+        <div className=" flex items-center justify-center loginPage p-5">
           <div className="w-full max-w-lg bg-white rounded-lg shadow-md p-8">
             <Form
               formTitle={"Create Your Account"}

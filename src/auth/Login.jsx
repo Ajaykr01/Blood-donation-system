@@ -18,7 +18,7 @@ const Login = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="h-screen flex items-center justify-center bg-black">
+        <div className="h-screen flex items-center justify-center loginPage">
           <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
             <Form
               formTitle={"Login to Your Account"}
