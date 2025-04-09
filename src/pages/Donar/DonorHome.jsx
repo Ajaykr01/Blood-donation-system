@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../../components/shared/Layout/Layout";
+import { Link } from "react-router-dom";
 
 const DonorHome = () => {
   return (
@@ -55,12 +56,12 @@ const DonorHome = () => {
             </div>
           </div>
 
-          <a
-            href="/donate-blood"
+          <Link
+            to="/donar/donate-blood"
             className="mt-10 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full inline-block transition-colors duration-300"
           >
             Donate Blood Now
-          </a>
+          </Link>
         </div>
       </main>
     </Layout>
