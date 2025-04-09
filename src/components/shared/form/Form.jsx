@@ -67,16 +67,16 @@ const Form = ({ formType, submitBtn, formTitle }) => {
           />
           <label htmlFor="hospitalRadio">Hospital</label>
         </div>
-        {/* <div className="flex gap-1">
+        <div className="flex gap-1">
           <input
             type="radio"
             name="role"
-            id="organisationRadio"
-            value={"organisation"}
+            id="patientRadio"
+            value={"patient"}
             onChange={(e) => setRole(e.target.value)}
           />
-          <label htmlFor="organisationRadio">Organisation</label>
-        </div> */}
+          <label htmlFor="patientRadio">Patient</label>
+        </div>
       </div>
       {/* switch stmt */}
       {(() => {
@@ -106,7 +106,9 @@ const Form = ({ formType, submitBtn, formTitle }) => {
           case formType === "signUpType": {
             return (
               <>
-                {(role === "admin" || role === "donar") && (
+                {(role === "admin" ||
+                  role === "donar" ||
+                  role === "patient") && (
                   <InputType
                     labelText={"Name"}
                     labelFor={"forName"}
