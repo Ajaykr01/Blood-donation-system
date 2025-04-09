@@ -4,6 +4,10 @@ const {
   getDonarsListController,
   getHospitalListController,
   deleteDonarController,
+  getPatientsListController,
+  getDonationHistory,
+  updateDonationStatus,
+  getBloodRequests,
 } = require("../controllers/adminController");
 const adminMiddleware = require("../middleware/adminMiddleware");
 
@@ -15,6 +19,11 @@ router.get(
   adminMiddleware,
   getDonarsListController
 );
+
+router.get("/patient-list", getPatientsListController);
+router.get("/donation-history", getDonationHistory);
+router.put("/update-donation-status/:id", updateDonationStatus);
+router.get("/blood-requests", getBloodRequests);
 
 router.get(
   "/hospital-list",
