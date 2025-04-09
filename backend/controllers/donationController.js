@@ -3,8 +3,17 @@ const mongoose = require("mongoose");
 
 const donateBlood = async (req, res) => {
   try {
-    const { name, email, phone, bloodGroup, gender, age, location, parentId } =
-      req.body;
+    const {
+      name,
+      email,
+      phone,
+      bloodGroup,
+      unit,
+      gender,
+      age,
+      location,
+      parentId,
+    } = req.body;
     if (
       !name ||
       !email ||
@@ -12,6 +21,7 @@ const donateBlood = async (req, res) => {
       !bloodGroup ||
       !gender ||
       !age ||
+      !unit ||
       !location
     ) {
       return res
@@ -24,6 +34,7 @@ const donateBlood = async (req, res) => {
       email,
       phone,
       bloodGroup,
+      unit,
       gender,
       age,
       location,
@@ -37,7 +48,7 @@ const donateBlood = async (req, res) => {
       donation,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -52,7 +63,7 @@ const getDonorHistory = async (req, res) => {
     }
 
     const parentId = new mongoose.Types.ObjectId(email);
-    const donations = await Donation.find({ parentId });
+    const donations = await Donation.find({ parentId }).sort({ createdAt: -1 });
 
     if (!donations.length) {
       return res
@@ -65,7 +76,6 @@ const getDonorHistory = async (req, res) => {
       donarData: donations,
     });
   } catch (error) {
-    console.log(error.message);
     res
       .status(500)
       .json({ success: false, message: "Error fetching donar history" });
@@ -111,7 +121,6 @@ const updateDonationController = async (req, res) => {
       updatedData: updatedDonation,
     });
   } catch (error) {
-    console.log("Error updating donation", error.message);
     return res.status(500).send({
       success: false,
       seccess: "Error while updating donation history",
@@ -145,7 +154,6 @@ const deleteDonationController = async (req, res) => {
       deletedData: deletedDonation,
     });
   } catch (error) {
-    console.log("Error deleting donation", error.message);
     return res.status(500).send({
       success: false,
       seccess: "Error while deleting donation history",
