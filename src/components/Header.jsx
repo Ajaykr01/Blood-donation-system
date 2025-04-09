@@ -82,16 +82,6 @@ const Navbar = () => {
                 Contact Us
               </NavLink>
             </li>
-            {/* <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `${isActive ? "text-red-500" : "text-white"}`
-                }
-                to="/donate"
-              >
-                Donate Blood
-              </NavLink>
-            </li> */}
           </ul>
         </div>
         <div className="right-nav flex items-center justify-around">
