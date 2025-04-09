@@ -26,7 +26,7 @@ const Donation = () => {
         setData(res?.data?.inventory);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
