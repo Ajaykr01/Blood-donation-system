@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className="bg-black text-white">
+      <nav className="bg-black/65 backdrop-blur-md text-white">
         <div className="container flex justify-between items-center">
           <div className="logo m-2 flex items-center">
             <BiDonateBlood className="size-10" />{" "}
