@@ -90,7 +90,7 @@ const DonationHistory = () => {
         window.location.reload();
       }, 2000);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   return (
@@ -104,6 +104,7 @@ const DonationHistory = () => {
               <th className="border border-gray-300 px-2 py-2">Email</th>
               <th className="border border-gray-300 px-2 py-2">Phone</th>
               <th className="border border-gray-300 px-2 py-2">Blood Group</th>
+              <th className="border border-gray-300 px-2 py-2">Unit(ML)</th>
               <th className="border border-gray-300 px-2 py-2">Gender</th>
               <th className="border border-gray-300 px-2 py-2">Age</th>
               <th className="border border-gray-300 px-2 py-2">Address</th>
@@ -152,7 +153,16 @@ const DonationHistory = () => {
                         name="bloodGroup"
                         value={editFormData.bloodGroup}
                         onChange={handleEditChange}
-                        className="border p-1 w-20"
+                        className="border p-1 w-16"
+                      />
+                    </td>
+                    <td className="border border-gray-300 px-2 py-2">
+                      <input
+                        type="Number"
+                        name="unit"
+                        value={editFormData.unit}
+                        onChange={handleEditChange}
+                        className="border p-1 w-16"
                       />
                     </td>
                     <td className="border border-gray-300 px-2 py-2">
@@ -170,7 +180,7 @@ const DonationHistory = () => {
                         name="age"
                         value={editFormData.age}
                         onChange={handleEditChange}
-                        className="border p-1 w-20"
+                        className="border p-1 w-16"
                       />
                     </td>
                     <td className="border border-gray-300 px-2 py-2">
@@ -179,7 +189,7 @@ const DonationHistory = () => {
                         name="location"
                         value={editFormData.location}
                         onChange={handleEditChange}
-                        className="border p-1 w-32"
+                        className="border p-1 w-28"
                       />
                     </td>
                     <td className="border border-gray-300 px-2 py-2 flex gap-2">
@@ -210,6 +220,9 @@ const DonationHistory = () => {
                     </td>
                     <td className="border border-gray-300 px-2 py-2">
                       {record.bloodGroup}
+                    </td>
+                    <td className="border border-gray-300 px-2 py-2">
+                      {record.unit}
                     </td>
                     <td className="border border-gray-300 px-2 py-2">
                       {record.gender}
