@@ -5,6 +5,7 @@ const colors = require("colors");
 const connectDB = require("./config/db");
 const authRoute = require("./routes/authRoutes");
 const donationRoutes = require("./routes/donationRoutes");
+const bloodRequestRoutes = require("./routes/bloodRequestRoute");
 
 dotenv.config();
 
@@ -19,11 +20,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //routes
-app.use("/api/v1/auth", require("./routes/authRoutes"));
-app.use("/api/v1/inventory", require("./routes/inventoryRoutes"));
-app.use("/api/v1/analytics", require("./routes/analyticsRoutes"));
+app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/admin", require("./routes/adminRoutes"));
-app.use("/api/v1/donation", require("./routes/donationRoutes"));
+app.use("/api/v1/donation", donationRoutes);
+app.use("/api/v1/requestBlood", bloodRequestRoutes);
+app.use("/api/v1/blood-requests", bloodRequestRoutes);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
