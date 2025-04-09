@@ -12,6 +12,7 @@ const DonateBlood = () => {
     bloodGroup: "",
     gender: "",
     age: "",
+    unit: "",
     location: "",
     parentId: parentid,
   });
@@ -32,6 +33,7 @@ const DonateBlood = () => {
           bloodGroup: "",
           gender: "",
           age: "",
+          unit: "",
           location: "",
         });
         toast(res.data.message);
@@ -43,7 +45,7 @@ const DonateBlood = () => {
 
   return (
     <Layout>
-      <div className=" p-5 relative left-1 w-[83vw]  flex justify-center">
+      <div className="p-2 relative w-[84vw] h-[110vh] flex justify-center bg-lime-500">
         <div className="bg-slate-700  shadow-lg rounded-lg p-8  flex flex-col w-[35vw]">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -80,6 +82,20 @@ const DonateBlood = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Enter your phone number"
+                className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-red-500"
+                required
+              />
+            </div>
+            <div>
+              <label className="block font-medium text-white">
+                Unit (in ML)
+              </label>
+              <input
+                type="number"
+                name="unit"
+                value={formData.unit}
+                placeholder="Enter blood unit"
+                onChange={handleChange}
                 className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-red-500"
                 required
               />
@@ -165,7 +181,7 @@ const DonateBlood = () => {
               type="submit"
               className="w-full bg-red-600 text-white py-2 rounded text-lg font-medium hover:bg-red-700 transition"
             >
-              Submit
+              Donate
             </button>
           </form>
         </div>
