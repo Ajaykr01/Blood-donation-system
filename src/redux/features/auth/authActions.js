@@ -9,6 +9,7 @@ export const userLogin = createAsyncThunk(
       const { data } = await API.post("/auth/login", { role, email, password });
 
       localStorage.setItem("blood", data.user._id);
+      localStorage.setItem("role", data.user.role);
       if (data.success) {
         toast.success(data.message);
         localStorage.setItem("token", data.token);
@@ -17,7 +18,9 @@ export const userLogin = createAsyncThunk(
         } else if (role === "donar") {
           window.location.replace("/donar-dashboard");
         } else if (role === "hospital") {
-          window.location.replace("/home");
+          window.location.replace("/hospital-dashboard");
+        } else if (role === "patient") {
+          window.location.replace("/patient-dashboard");
         }
       }
       return data;
@@ -64,7 +67,7 @@ export const userSignUp = createAsyncThunk(
         window.location.replace("/login");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
@@ -84,7 +87,7 @@ export const getCurrentUser = createAsyncThunk(
         return res?.data;
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
