@@ -9,7 +9,7 @@ export function handleLogin(e, email, password, role) {
     }
     store.dispatch(userLogin({ email, password, role }));
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -39,6 +39,6 @@ export const handleSignUp = (
       })
     );
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
