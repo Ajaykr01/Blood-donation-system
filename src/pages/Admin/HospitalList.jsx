@@ -15,7 +15,7 @@ const HospitalList = () => {
         setData(res?.data?.hospitalData);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -41,7 +41,7 @@ const HospitalList = () => {
         window.location.reload();
       }, 2000);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -49,7 +49,7 @@ const HospitalList = () => {
     <Layout>
       <table className="table-auto w-full m-5 border-collapse border border-gray-300">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-orange-500">
             <th className="border border-gray-300 px-4 py-2">Name</th>
             <th className="border border-gray-300 px-4 py-2">Email</th>
             <th className="border border-gray-300 px-4 py-2">Phone</th>
