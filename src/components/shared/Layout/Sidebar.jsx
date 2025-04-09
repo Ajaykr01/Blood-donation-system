@@ -1,5 +1,4 @@
 import React from "react";
-import { userMenu } from "./Menus/UserMenu";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "../../../styles/Layout.css";
@@ -15,18 +14,44 @@ const Sidebar = () => {
           {user?.role === "admin" && (
             <>
               <div
-                className={`menu-item ${location.pathname === "/donar-list"}`}
+                className={`menu-item ${
+                  location.pathname === "/admin/donar-list"
+                }`}
               >
-                <i className="fa-solid fa-warehouse"></i>
-                <Link to="/donar-list">Donar List</Link>
+                <i class="fa-solid fa-user"></i>
+                <Link to="/admin/donar-list">Donor List</Link>
               </div>
               <div
                 className={`menu-item ${
-                  location.pathname === "/hospital-list"
+                  location.pathname === "/admin/patient-list"
+                }`}
+              >
+                <i class="fa-solid fa-hospital-user"></i>
+                <Link to="/admin/patient-list">Patient List</Link>
+              </div>
+              <div
+                className={`menu-item ${
+                  location.pathname === "/admin/hospital-list"
                 }`}
               >
                 <i className="fa-solid fa-hospital"></i>
-                <Link to="/hospital-list">Hospital List</Link>
+                <Link to="/admin/hospital-list">Hospital List</Link>
+              </div>
+              <div
+                className={`menu-item ${
+                  location.pathname === "/admin/donations"
+                }`}
+              >
+                <i class="fa-solid fa-hand-holding-medical"></i>
+                <Link to="/admin/donations">Donations</Link>
+              </div>
+              <div
+                className={`menu-item ${
+                  location.pathname === "/admin/blood-requests"
+                }`}
+              >
+                <i class="fa-solid fa-rotate"></i>
+                <Link to="/admin/blood-requests">Blood Requets</Link>
               </div>
             </>
           )}
@@ -43,20 +68,69 @@ const Sidebar = () => {
               </div>
               <div className="menu-item">
                 <i className="fa-solid fa-hand-holding-medical"></i>
-                <Link to="/donate-blood">Donate Blood</Link>
+                <Link to="/donar/donate-blood">Donate Blood</Link>
               </div>
               <div className={`menu-item ${location.pathname === "/donation"}`}>
                 <i class="fa-solid fa-clock-rotate-left"></i>
-                <Link to="/donation-history">Donation History</Link>
+                <Link to="/donar/donation-history">Donation History</Link>
+              </div>
+            </>
+          )}
+
+          {user?.role === "patient" && (
+            <>
+              <div
+                className={`menu-item ${
+                  location.pathname === "/patient-dashboard"
+                }`}
+              >
+                <i class="fa-solid fa-house"></i>
+                <Link to="/patient-dashboard">Home</Link>
+              </div>
+              <div className="menu-item">
+                <i class="fa-solid fa-rotate"></i>
+                <Link to="/patient/patient-request">Make Request</Link>
+              </div>
+              <div
+                className={`menu-item ${
+                  location.pathname === "/patient/patient-request-history"
+                }`}
+              >
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <Link to="/patient/patient-request-history">
+                  Request History
+                </Link>
               </div>
             </>
           )}
 
           {user?.role === "hospital" && (
-            <div className={`menu-item ${location.pathname === "/consumer"}`}>
-              <i className="fa-solid fa-hand-holding-medical"></i>
-              <Link to="/consumer">Consumer</Link>
-            </div>
+            <>
+              <div
+                className={`menu-item ${
+                  location.pathname === "/hospital-dashboard"
+                }`}
+              >
+                <i className="fa-solid fa-hospital"></i>
+                <Link to="/hospital-dashboard">Home</Link>
+              </div>
+              <div
+                className={`menu-item ${
+                  location.pathname === "/hospital/donations"
+                }`}
+              >
+                <i class="fa-solid fa-hand-holding-medical"></i>
+                <Link to="/hospital/donations">Donations</Link>
+              </div>
+              <div
+                className={`menu-item ${
+                  location.pathname === "/hospital/blood-requests"
+                }`}
+              >
+                <i class="fa-solid fa-rotate"></i>
+                <Link to="/hospital/blood-requests">Blood Requets</Link>
+              </div>
+            </>
           )}
         </div>
       </div>
