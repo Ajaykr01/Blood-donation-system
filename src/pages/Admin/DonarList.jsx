@@ -15,7 +15,7 @@ const DonarList = () => {
         setData(res?.data?.donarData);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -41,7 +41,7 @@ const DonarList = () => {
         window.location.reload();
       }, 2000);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -49,7 +49,7 @@ const DonarList = () => {
     <Layout>
       <table className="table-auto w-full m-5 border-collapse border border-gray-300">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-orange-500">
             <th className="border border-gray-300 px-4 py-2">Name</th>
             <th className="border border-gray-300 px-4 py-2">Email</th>
             <th className="border border-gray-300 px-4 py-2">Phone</th>
@@ -64,7 +64,7 @@ const DonarList = () => {
               className="border-b border-gray-300 hover:bg-gray-50"
             >
               <td className="border border-gray-300 px-4 py-2">
-                {record.name || record.organisationName + " (ORG)"}
+                {record.name}
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 {record.email}
@@ -73,7 +73,7 @@ const DonarList = () => {
                 {record.phone}
               </td>
               <td className="border border-gray-300 px-4 py-2">
-                {moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}
+                {moment(record.createdAt).format("DD/MM/YYYY")}
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 <button
