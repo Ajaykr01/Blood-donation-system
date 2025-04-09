@@ -153,20 +153,6 @@ const Navbar = () => {
                     Contact Us
                   </NavLink>
                 </li>
-                <li className="flex items-center gap-2 bg-slate-800 px-2 rounded-md py-1">
-                  <MdBloodtype className="text-white" />
-                  <NavLink
-                    className={({ isActive }) =>
-                      `${
-                        isActive ? "text-yellow-400" : "text-white"
-                      } text-[15px] py-1`
-                    }
-                    to="/donate"
-                    onClick={closeMenu}
-                  >
-                    Donate Blood
-                  </NavLink>
-                </li>
                 <div className="flex items-center justify-center mt-40">
                   <button className="bg-slate-800 w-28 flex items-center justify-center py-2 gap-1 rounded-xl text-white">
                     <IoMdLogIn className="text-white" />
