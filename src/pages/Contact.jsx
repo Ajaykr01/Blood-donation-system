@@ -23,7 +23,6 @@ const Contact = () => {
     }).then((res) => res.json());
 
     if (res.success) {
-      console.log("Success", res);
       toast(res.message);
       event.target.reset();
     }
