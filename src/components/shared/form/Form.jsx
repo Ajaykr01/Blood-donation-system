@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InputType from "./InputType";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { handleLogin, handleSignUp } from "../../../services/authService";
 
 const Form = ({ formType, submitBtn, formTitle }) => {
@@ -179,22 +179,14 @@ const Form = ({ formType, submitBtn, formTitle }) => {
           }
         }
       })()}
-      {/* todo:have to work on remeber and forgot */}
       {formType === "loginType" && (
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="remember"
-              className="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
-            />
-            <label htmlFor="remember" className="ml-2 text-sm text-gray-600">
-              Remember Me
-            </label>
-          </div>
-          <NavLink href="#" className="text-sm text-red-600 hover:underline">
+          <Link
+            to="/forgot-password"
+            className="text-sm text-red-600 hover:underline"
+          >
             Forgot Password?
-          </NavLink>
+          </Link>
         </div>
       )}
 
