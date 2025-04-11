@@ -9,7 +9,7 @@ const Header = () => {
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const location = useLocation();
-  //logout handler
+
   const handleLogout = () => {
     localStorage.clear();
     toast.success("Logout Successfully", {
@@ -31,9 +31,6 @@ const Header = () => {
               <p className="flex items-center gap-1">
                 <FaRegUserCircle /> Welcome,{" "}
                 {user?.name || user?.hospitalName || user?.organisationName}
-                <span className="bg-slate-500 rounded-lg w-20 text-center text-sm">
-                  {user?.role}
-                </span>
               </p>
             </li>
             {(user?.role === "admin" || user?.role === "hospital") &&
@@ -43,13 +40,13 @@ const Header = () => {
               location.pathname === "/admin" ||
               location.pathname === "/consumer" ||
               location.pathname === "/donation" ? (
-                <li className="nav-item">
+                <li className="nav-item bg-orange-500 rounded-md px-2 ml-2">
                   <Link to="/analytics" className="text-sm p-2">
                     Analytics
                   </Link>
                 </li>
               ) : (
-                <li className="nav-item">
+                <li className="nav-item bg-orange-500 rounded-md px-2 ml-2">
                   <Link to="/" className="text-sm p-2">
                     Home
                   </Link>
