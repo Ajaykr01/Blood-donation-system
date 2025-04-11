@@ -7,7 +7,6 @@ import API from "../../services/API";
 
 const PatientList = () => {
   const [data, setData] = useState([]);
-  //find patient records
   const getPatients = async () => {
     try {
       const res = await API.get("/admin/patient-list");
