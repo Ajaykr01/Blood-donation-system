@@ -10,32 +10,19 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
       required: function () {
-        if (
-          this.role === "donar" ||
-          this.role === "admin" ||
-          this.role === "patient"
-        ) {
-          return true;
-        }
-        return false;
+        return ["donar", "admin", "patient"].includes(this.role);
       },
     },
     organisationName: {
       type: String,
       required: function () {
-        if (this.role === "organisation") {
-          return true;
-        }
-        return false;
+        return this.role === "organisation";
       },
     },
     hospitalName: {
       type: String,
       required: function () {
-        if (this.role === "hospital") {
-          return true;
-        }
-        return false;
+        return this.role === "hospital";
       },
     },
     email: {
@@ -53,6 +40,14 @@ const userSchema = new mongoose.Schema(
     phone: {
       type: Number,
       required: [true, "phone number is required"],
+    },
+    resetToken: {
+      type: String,
+      default: null,
+    },
+    resetTokenExpiry: {
+      type: Date,
+      default: null,
     },
   },
   { timestamps: true }
