@@ -1,15 +1,18 @@
-# React + Vite
-
-# Blood Donation System 🚀
+# 🩸Blood Donation System
 
 A full-stack blood donation system built with React, Node.js, Express.js and MongoDB.
 
-## Features
+## 🚀Features
 
-- User authentication (Login/SignUp)
-- Forgot/Reset password with email
-- Role-based dashboard (Admin, Donor, Patient, Hospital)
-- Blood request management
+- ✅User authentication (Login/SignUp)
+- 🔒 Forgot/Reset Password via Email
+- 👥 Role-based Dashboards:
+- Admin
+- Donor
+- Patient
+- Hospital
+- 📋 Blood Request & Donation Management
+- 📧 Email Integration with Nodemailer + Gmail SMTP
 
 # Tech Stack
 
@@ -18,7 +21,7 @@ A full-stack blood donation system built with React, Node.js, Express.js and Mon
 - **Database:** MongoDB
 - **Email:** Nodemailer + Gmail SMTP
 
-# Setup Instructions
+# 🛠️Setup Instructions
 
 ### 1. Clone the repo
 
