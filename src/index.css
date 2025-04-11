@@ -56,3 +56,16 @@ nav ul li a {
   background-image: url("./assets/Images/banner4.jpg");
   background-size: cover;
 }
+
+.forgotPass-bg {
+  background-image: url("https://img.freepik.com/free-vector/authentication-concept-illustration_114360-7783.jpg?ga=GA1.1.1875339788.1744225049&semt=ais_hybrid&w=740");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.resetPass-bg {
+  background-image: url("https://img.freepik.com/free-vector/computer-login-concept-illustration_114360-23872.jpg?ga=GA1.1.1875339788.1744225049&semt=ais_hybrid&w=740");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
