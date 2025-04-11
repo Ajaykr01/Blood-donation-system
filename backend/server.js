@@ -6,6 +6,7 @@ const connectDB = require("./config/db");
 const authRoute = require("./routes/authRoutes");
 const donationRoutes = require("./routes/donationRoutes");
 const bloodRequestRoutes = require("./routes/bloodRequestRoute");
+const forgotPasswordRoute = require("./routes/forgotPasswordRoute");
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use("/api/v1/admin", require("./routes/adminRoutes"));
 app.use("/api/v1/donation", donationRoutes);
 app.use("/api/v1/requestBlood", bloodRequestRoutes);
 app.use("/api/v1/blood-requests", bloodRequestRoutes);
+app.use("/api/v1/forgotPass", forgotPasswordRoute);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
