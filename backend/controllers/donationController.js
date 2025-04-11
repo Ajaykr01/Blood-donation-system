@@ -102,7 +102,6 @@ const updateDonationController = async (req, res) => {
 
     updateData.createdAt = existingDonation.createdAt;
 
-    // const objectId = new mongoose.Types.ObjectId(donationId);
     const updatedDonation = await Donation.findByIdAndUpdate(
       donationId,
       updateData,
