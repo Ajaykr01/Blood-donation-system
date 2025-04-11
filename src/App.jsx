@@ -27,6 +27,9 @@ import Donations from "./pages/Admin/Donations";
 import BloodRequests from "./pages/Admin/BloodRequests";
 import HospitalDonations from "./pages/Hospital/HospitalDonations";
 import HospitalBloodRequests from "./pages/Hospital/HospitalBloodRequests";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import LinkExpired from "./pages/LinkExpired";
 
 const App = () => {
   return (
@@ -209,6 +212,30 @@ const App = () => {
             element={
               <PublicRoute>
                 <About />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/forgot-password"
+            element={
+              <PublicRoute>
+                <ForgotPassword />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/reset-password/:token"
+            element={
+              <PublicRoute>
+                <ResetPassword />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/link-expired"
+            element={
+              <PublicRoute>
+                <LinkExpired />
               </PublicRoute>
             }
           />
