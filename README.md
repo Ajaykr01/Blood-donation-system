@@ -33,22 +33,14 @@ cd blood-donation-system
 ### 2. Setup Environment Variables
 
 - Create a .env file in the backend directory:
-
-- EMAIL_USER=your_email@gmail.com
-- EMAIL_PASS=your_app_password
-- MONGO_URI=your_mongo_connection_string
-- JWT_SECRET=your_jwt_secret
+- MONGO_URL = your_mongo_connection_string
+- JWT_SECRET = your_jwt_secret
 
 ### 3. Install Dependencies
 
 # Backend
 
 - cd backend
-- npm install
-
-# Frontend
-
-- cd ../frontend
 - npm install
 
 ### 4. Run the Project
